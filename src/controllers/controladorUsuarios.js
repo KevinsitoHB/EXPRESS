@@ -3,6 +3,7 @@ import modeloUsuario from '../models/modeloUsuario.js';
 const ControladorUsuarios = {
   crearUsuario: async (req, res) => {
     try {
+      console.log(req.body);
       const nuevoUsuario = new modeloUsuario(req.body);
       const usuarioCreado = await nuevoUsuario.save();
 
