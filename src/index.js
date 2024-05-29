@@ -1,4 +1,7 @@
+import 'dotenv/config';
 import appServer from './servidor.js';
-appServer.listen(3001, () => {
-  console.log('En el puerto 3001');
+import './conexionDB.js';
+
+appServer.listen(3000, () => {
+  console.log('En el puerto 3000');
 });
