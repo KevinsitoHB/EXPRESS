@@ -8,4 +8,5 @@ rutaUsuarios.get('/:id', ControladorUsuarios.leerUsuario);
 rutaUsuarios.get('/', ControladorUsuarios.leerUsuarios);
 rutaUsuarios.put('/:id', ControladorUsuarios.actualizarUsuario);
 rutaUsuarios.delete('/:id', ControladorUsuarios.eliminarUsuario);
+rutaUsuarios.delete('/', ControladorUsuarios.eliminarUsuarios);
 export default rutaUsuarios;

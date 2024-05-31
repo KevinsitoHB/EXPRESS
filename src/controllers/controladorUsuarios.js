@@ -23,6 +23,7 @@ const ControladorUsuarios = {
   },
   leerUsuario: async (req, res) => {
     try {
+      console.log(req.body);
       const usuarioEncontrado = await modeloUsuario.findById(req.params.id);
       if (usuarioEncontrado._id) {
         res.json({
@@ -53,13 +54,15 @@ const ControladorUsuarios = {
   },
   actualizarUsuario: async (req, res) => {
     try {
+      console.log(req.body);
       const usuarioActualizado = await modeloUsuario.findByIdAndUpdate(
-        req.params.id
+        req.params.id,
+        req.body
       );
       if (usuarioActualizado._id) {
         res.json({
           mensaje: 'PUT actualizar usuario...works!',
-          datos: usuarioActualizado,
+          datos: usuarioActualizado._id,
         });
       }
     } catch (error) {
@@ -71,12 +74,23 @@ const ControladorUsuarios = {
   },
   eliminarUsuario: async (req, res) => {
     try {
-      const usuarioEliminado = await modeloUsuario.findOneAndDelete(
+      const usuarioEliminado = await modeloUsuario.findByIdAndDelete(
         req.params.id
       );
       if (usuarioEliminado._id) {
         res.json({mensaje: 'DELETE eliminar usuario...works!', datos: null});
       }
+    } catch (error) {
+      res.json({
+        mensaje: 'ocurrió un error al eliminar usuario',
+        datos: error,
+      });
+    }
+  },
+  eliminarUsuarios: async (req, res) => {
+    try {
+      console.log(req.params);
+      await modeloUsuario.deleteMany({});
     } catch (error) {
       res.json({
         mensaje: 'ocurrió un error al eliminar usuario',
